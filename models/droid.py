@@ -1,9 +1,9 @@
 class Droid:
 
-    def __init__(self, input_name, input_type, input_date_of_reg, input_repair_notes, input_owner, input_technician, generated_id = None):
+    def __init__(self, input_name, input_type, input_reg_date, input_repair_notes, input_owner, input_technician, generated_id = None):
         self.name = input_name
         self.type = input_type
-        self.date_of_registration = input_date_of_reg
+        self.registration_date = input_reg_date
         self.repair_notes = input_repair_notes
         self.owner = input_owner
         self.technician = input_technician

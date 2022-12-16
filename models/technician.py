@@ -1,6 +1,6 @@
 class Technician:
 
-    def __init__(self, input_name, input_specialty, generated_id = None):
+    def __init__(self, input_name, input_speciality, generated_id = None):
         self.name = input_name
-        self.specialty = input_specialty
+        self.speciality = input_speciality
         self.id = generated_id
