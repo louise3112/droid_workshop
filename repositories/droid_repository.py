@@ -39,6 +39,21 @@ def select(id):
     
     return droid
 
+def select_droid_by_technician(technician_id):
+    droids = []
+
+    sql = "SELECT * FROM droids WHERE technician_id = %s"
+    values = [technician_id]
+    output = run_sql(sql, values)
+
+    for row in output:
+        owner = owner_repo.select(row['owner_id'])
+        technician = tech_repo.select(row['technician_id'])
+        droid = Droid(row['name'], row['type'], row['registration_date'], row['repair_notes'], owner, technician, row['id'])
+        droids.append(droid)
+
+    return droids
+
 
 # UPDATE
 def update(droid):
