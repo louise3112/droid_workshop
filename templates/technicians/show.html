@@ -2,26 +2,29 @@
 
 {% block content %}
 
-    <div class="single_tech">
-        <h2>{{technician.name}}</h2>
-        <p>Speciality: {{technician.type.name}} Droids</p>
+    <h2>{{technician.name}}</h2>
+
+    <p> <b>Speciality:</b> {{technician.type.name}} Droids</p>
+
+    <div class="show-buttons">
+        <form action="/technicians/{{technician.id}}/edit">
+            <input type="submit" value="Update Details">
+        </form>
+
+        <form action="/technicians/{{technician.id}}/delete", method="post">
+            <input type="submit" value="Delete">
+        </form>
     </div>
 
-    <form action="/technicians/{{technician.id}}/edit">
-        <input type="submit" value="Update Details">
-    </form>
-
-    <form action="/technicians/{{technician.id}}/delete", method="post">
-        <input type="submit" value="Delete">
-    </form>
-
-    <div>
-        <h3>Droids Assigned</h3>
-        <ul>
-            {% for droid in droids_assigned %} 
-                <li> {{droid.name}} </li>
-            {% endfor %}
-        </ul>
+    <h3>Droids Assigned</h3>
+    <div class="droids-assigned">
+        {% for droid in droids_assigned %}
+            <div class="droid-assignee">
+                <h4>{{droid.name}}</h4>
+                <p><b>Registered:</b> {{droid.registration_date}}</p>
+                <p><b>Owner:</b> {{droid.owner.name}}, {{droid.owner.home_planet}}</p>
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}

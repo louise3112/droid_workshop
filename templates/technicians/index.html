@@ -1,16 +1,32 @@
 {% extends "base.html" %}
 
+{% block subheader %}
+
+    <nav>
+        <ul class="technicians-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/technicians">All Technicians</a></li>
+            <li><a href="/technicians/create">Add Technician</a></li>
+        </ul>
+    </nav>
+
+{% endblock %}
+
+
 {% block content %}
 
+    <h2>All Technicians</h2>
+
+    <div class="all-techs">
     {% for technician in all_technicians %}
 
-        <div class="all_techs">
-            <img src="{{technician.picture}}" alt="Picture of technician {{technician.name}}"><br>
-            <a href="/technicians/{{technician.id}}/show">Name: {{technician.name}}</a><br>
-            <p>Speciality: {{technician.type.name}}</p>
-        </div>
-
+        <a href="/technicians/{{technician.id}}/show" class="single-tech">
+            <img src="{{technician.picture}}" alt="Picture of technician {{technician.name}}">
+            <p><b>Name:</b> {{technician.name}}</p>
+            <p><b>Speciality:</b> {{technician.type.name}}</p>
+        </a>
 
     {% endfor %}
+    </div>
 
 {% endblock %}
