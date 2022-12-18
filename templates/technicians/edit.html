@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form action="/technicians/{{technician.id}}/show" method="post">
+
+        <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{technician.name}}" required autofocus>
+
+        <label for="type">Speciality:</label>
+            <select id="type" name="type_id">
+                {% for type in all_types %}
+                    <option value="{{ type.id }}"
+                    {% if type.id == technician.type.id %} selected="selected" {% endif %}>
+                        {{type.name}}</option>
+                {% endfor %}
+            </select>
+
+        <label for="picture">Link to picture:</label>
+            <input type="text" id="picture" name="picture" value="{{technician.picture}}">
+
+        <button type="submit">Update Details</button>
+
+    </form>
+
+{% endblock %}

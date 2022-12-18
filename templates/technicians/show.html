@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="single_tech">
+        <h2>{{technician.name}}</h2>
+        <p>Speciality: {{technician.type.name}} Droids</p>
+    </div>
+
+    <form action="/technicians/{{technician.id}}/edit">
+        <input type="submit" value="Update Details">
+    </form>
+
+    <form action="/technicians/{{technician.id}}/delete", method="post">
+        <input type="submit" value="Delete">
+    </form>
+
+    <div>
+        <h3>Droids Assigned</h3>
+        <ul>
+            {% for droid in droids_assigned %} 
+                <li> {{droid.name}} </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

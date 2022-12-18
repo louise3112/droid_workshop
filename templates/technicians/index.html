@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% for technician in all_technicians %}
+
+        <div class="all_techs">
+            <img src="{{technician.picture}}" alt="Picture of technician {{technician.name}}"><br>
+            <a href="/technicians/{{technician.id}}/show">Name: {{technician.name}}</a><br>
+            <p>Speciality: {{technician.type.name}}</p>
+        </div>
+
+
+    {% endfor %}
+
+{% endblock %}

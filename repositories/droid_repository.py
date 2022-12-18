@@ -32,10 +32,10 @@ def select(id):
 
     sql = "SELECT * FROM droids WHERE id = %s"
     values = [id]
-    output = run_sql(sql, values)
+    output = run_sql(sql, values)[0]
 
     if output is not None:
-        type = type_repo.select(row['type_id'])
+        type = type_repo.select(output['type_id'])
         owner = owner_repo.select(output['owner_id'])
         technician = tech_repo.select(output['technician_id'])
         droid = Droid(output['name'], type, output['registration_date'], output['repair_notes'], owner, technician, output['id'])

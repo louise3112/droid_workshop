@@ -26,7 +26,7 @@ def select(id):
 
     sql = "SELECT * FROM types WHERE id = %s"
     values = [id]
-    output = run_sql(sql, values)
+    output = run_sql(sql, values)[0]
 
     if output is not None:
         type = Type(output['name'], output['picture'], output['id'])

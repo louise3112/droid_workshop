@@ -4,8 +4,8 @@ import repositories.type_repository as type_repo
 
 # CREATE
 def save(technician):
-    sql = "INSERT INTO technicians (name, picture, bio, type_id) VALUES (%s, %s, %s, %s) RETURNING *"
-    values = [technician.name, technician.picture, technician.bio, technician.type.id]
+    sql = "INSERT INTO technicians (name, picture, type_id) VALUES (%s, %s, %s) RETURNING *"
+    values = [technician.name, technician.picture, technician.type.id]
     run_sql(sql, values)
 
 
@@ -18,7 +18,7 @@ def select_all():
 
     for row in output:
         type = type_repo.select(row['type_id'])
-        technician = Technician(row['name'], row['picture'], row['bio'], type, row['id'])
+        technician = Technician(row['name'], row['picture'], type, row['id'])
         technicians.append(technician)
 
     return technicians
@@ -28,19 +28,19 @@ def select(id):
 
     sql = "SELECT * FROM technicians WHERE id = %s"
     values = [id]
-    output = run_sql(sql, values)
+    output = run_sql(sql, values)[0]
 
     if output is not None:
         type = type_repo.select(output['type_id'])
-        technician = Technician(output['name'], output['picture'], output['bio'], type, output['id'])
+        technician = Technician(output['name'], output['picture'], type, output['id'])
     
     return technician
 
 
 # UPDATE
 def update(technician):
-    sql = "UPDATE technicians SET (name, picture, bio, type_id) = (%s, %s, %s, %s) WHERE id = %s"
-    values = [technician.name, technician.picture, technician.bio, technician.type.id, technician.id]
+    sql = "UPDATE technicians SET (name, picture, type_id) = (%s, %s, %s) WHERE id = %s"
+    values = [technician.name, technician.picture, technician.type.id, technician.id]
     run_sql(sql, values)
 
 

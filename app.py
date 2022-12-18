@@ -1,10 +1,9 @@
 from flask import Flask, render_template
-# from controllers.books_controller import books_blueprint
-
+from controllers.technicians_controller import technicians_blueprint
 
 app = Flask(__name__)
 
-# app.register_blueprint(books_blueprint)
+app.register_blueprint(technicians_blueprint)
 
 @app.route('/')
 def home():
