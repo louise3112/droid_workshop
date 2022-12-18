@@ -1,6 +1,7 @@
 class Owner:
 
-    def __init__(self, input_name, input_contact_details, generated_id = None):
+    def __init__(self, input_name, input_home_planet, input_comlink_frequency, generated_id = None):
         self.name = input_name
-        self.contact_details = input_contact_details
+        self.home_planet = input_home_planet
+        self.comlink_frequency = input_comlink_frequency
         self.id = generated_id
