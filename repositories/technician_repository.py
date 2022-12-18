@@ -1,10 +1,11 @@
 from db.run_sql import run_sql
 from models.technician import Technician
+import repositories.type_repository as type_repo
 
 # CREATE
 def save(technician):
-    sql = "INSERT INTO technicians (name, speciality) VALUES (%s, %s) RETURNING *"
-    values = [technician.name, technician.speciality]
+    sql = "INSERT INTO technicians (name, picture, bio, type_id) VALUES (%s, %s, %s, %s) RETURNING *"
+    values = [technician.name, technician.picture, technician.bio, technician.type.id]
     run_sql(sql, values)
 
 
@@ -16,7 +17,8 @@ def select_all():
     output = run_sql(sql)
 
     for row in output:
-        technician = Technician(row['name'], row['speciality'], row['id'])
+        type = type_repo.select(row['type_id'])
+        technician = Technician(row['name'], row['picture'], row['bio'], type, row['id'])
         technicians.append(technician)
 
     return technicians
@@ -29,15 +31,16 @@ def select(id):
     output = run_sql(sql, values)
 
     if output is not None:
-        technician = Technician(output['name'], output['speciality'], output['id'])
+        type = type_repo.select(output['type_id'])
+        technician = Technician(output['name'], output['picture'], output['bio'], type, output['id'])
     
     return technician
 
 
 # UPDATE
 def update(technician):
-    sql = "UPDATE technicians SET (name, speciality) = (%s, %s) WHERE id = %s"
-    values = [technician.name, technician.speciality, technician.id]
+    sql = "UPDATE technicians SET (name, picture, bio, type_id) = (%s, %s, %s, %s) WHERE id = %s"
+    values = [technician.name, technician.picture, technician.bio, technician.type.id, technician.id]
     run_sql(sql, values)
 
 
