@@ -1,21 +1,14 @@
 {% extends "base.html" %}
 
-{% block subheader %}
-
-    <nav>
-        <ul class="technicians-menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/technicians">All Technicians</a></li>
-            <li><a href="/technicians/create">Add Technician</a></li>
-        </ul>
-    </nav>
-
-{% endblock %}
-
-
 {% block content %}
 
-    <h2>All Technicians</h2>
+    <div class="all-techs-header">
+        <h2>All Technicians</h2>
+        <form action="/technicians/new">
+            <input type="submit" value="Add New Technician" class="buttons">
+        </form>
+    </div>
+    
 
     <div class="all-techs">
     {% for technician in all_technicians %}

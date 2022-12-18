@@ -4,6 +4,20 @@ header {
     padding: 24px;
 }
 
+.header-menu {
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    list-style: none;
+    padding-left: 0;
+}
+
+.header-menu > li > a {
+    color: rgb(255, 232, 31);
+    font-size: 18px;
+    margin: 0;
+}
+
 h1 {
     margin: 0;
     margin-bottom: 12px;
@@ -69,19 +83,5 @@ footer {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 232, 31);
     padding: 24px;
+    text-align: center;
 }
-
-.footer-menu {
-    display: flex;
-    gap: 32px;
-    margin: 0;
-    list-style: none;
-    padding-left: 0;
-}
-
-.footer-menu > li > a {
-    color: rgb(255, 232, 31);
-    font-size: 18px;
-    margin: 0;
-}
-

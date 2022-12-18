@@ -1,21 +1,18 @@
-.technicians-menu {
+.all-techs-header {
     display: flex;
-    gap: 32px;
-    margin: 0;
-    list-style: none;
-    padding-left: 0;
+    gap: 24px ;
+    align-items: center;
+    padding-bottom: 18px;
 }
 
-.technicians-menu > li > a {
-    color: rgb(255, 232, 31);
-    font-size: 18px;
-    margin: 0;
+.all-techs-header > h2 {
+    padding: 0;
 }
 
 .all-techs {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    justify-content: space-between;
     gap: 48px;
 }
 
@@ -52,14 +49,14 @@
     gap: 8px;
 }
 
-.show-buttons > form > input {
+.buttons {
     font-size: 16px;
     background-color: rgb(243, 243, 243);
-    height: 30px;
-    width: 130px;
+    height: 40px;
+    width: 175px;
     border-color: black;
     border-radius: 6px;
-    border-width: 1.5px;
+    border-width: 2px;
     cursor: pointer;
 }
 
@@ -82,4 +79,44 @@
     height: 80px;
     width: 300px;
     cursor: pointer; 
+}
+
+.techs-form {
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    display: grid;
+    grid-template: 40px 40px 40px 40px/ 125px 375px;
+    gap: 12px;
+    align-items: center;
+}
+
+.techs-form > input {
+    font-size: 16px;
+    background-color: rgb(243, 243, 243); 
+    padding: 8px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 6px;
+}
+
+.techs-form > select {
+    font-size: 16px;
+    background-color: rgb(243, 243, 243); 
+    padding: 8px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 6px;
+}
+
+.techs-form > button {
+    font-size: 16px;
+    background-color: rgb(243, 243, 243); 
+    padding: 8px;
+    width: 512px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 6px;
 }

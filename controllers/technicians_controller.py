@@ -41,3 +41,19 @@ def update(id):
 def delete(id):
     tech_repo.delete(id)
     return redirect("/technicians")
+
+
+@technicians_blueprint.route("/technicians/new")
+def new():
+    types = type_repo.select_all()
+    return render_template("technicians/new.html", all_types = types)
+
+@technicians_blueprint.route("/technicians", methods=['POST'])
+def create():
+    name = request.form['name']
+    picture = request.form['picture']
+    type_id = request.form['type_id']
+    type = type_repo.select(type_id)
+    technician = Technician(name, picture, type)
+    tech_repo.save(technician)
+    return redirect("/technicians")

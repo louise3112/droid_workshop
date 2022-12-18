@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form action="/technicians" method="post" class="techs-form">
+
+        <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Name" required autofocus>
+
+        <label for="type">Speciality:</label>
+            <select id="type" name="type_id">
+                {% for type in all_types %}
+                    <option value="{{ type.id }}">{{type.name}} Droids</option>
+                {% endfor %}
+            </select>
+
+        <label for="picture">Link to picture:</label>
+            <input type="text" id="picture" name="picture" placeholder="URL for picture...">
+        
+        <button type="submit">Add Technician</button>
+
+    </form>
+
+{% endblock %}
