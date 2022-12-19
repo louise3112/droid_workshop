@@ -1,7 +1,24 @@
+header > h1 {
+    grid-area: heading;
+}
+
+header > nav {
+    grid-area: nav-bar;
+}
+
+header > img {
+    grid-area: logo;
+}
+
 header {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 232, 31);
     padding: 24px;
+    display: grid;
+    grid-template-areas: 
+        'heading logo'
+        'nav-bar logo';
+    grid-template-columns: 1fr 80px;
 }
 
 .header-menu {
