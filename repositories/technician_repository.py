@@ -4,8 +4,8 @@ import repositories.type_repository as type_repo
 
 # CREATE
 def save(technician):
-    sql = "INSERT INTO technicians (name, picture, type_id) VALUES (%s, %s, %s) RETURNING *"
-    values = [technician.name, technician.picture, technician.type.id]
+    sql = "INSERT INTO technicians (name, type_id) VALUES (%s, %s) RETURNING *"
+    values = [technician.name, technician.type.id]
     run_sql(sql, values)
 
 
@@ -18,7 +18,7 @@ def select_all():
 
     for row in output:
         type = type_repo.select(row['type_id'])
-        technician = Technician(row['name'], row['picture'], type, row['id'])
+        technician = Technician(row['name'], type, row['id'])
         technicians.append(technician)
 
     return technicians
@@ -32,7 +32,7 @@ def select(id):
 
     if output is not None:
         type = type_repo.select(output['type_id'])
-        technician = Technician(output['name'], output['picture'], type, output['id'])
+        technician = Technician(output['name'], type, output['id'])
     
     return technician
 
@@ -45,7 +45,7 @@ def select_technicians_by_type(type_id):
 
     for row in output:
         type = type_repo.select(row['type_id'])
-        technician = Technician(row['name'], row['picture'], type, row['id'])
+        technician = Technician(row['name'], type, row['id'])
         technicians.append(technician)
 
     return technicians
@@ -53,8 +53,8 @@ def select_technicians_by_type(type_id):
 
 # UPDATE
 def update(technician):
-    sql = "UPDATE technicians SET (name, picture, type_id) = (%s, %s, %s) WHERE id = %s"
-    values = [technician.name, technician.picture, technician.type.id, technician.id]
+    sql = "UPDATE technicians SET (name, type_id) = (%s, %s) WHERE id = %s"
+    values = [technician.name, technician.type.id, technician.id]
     run_sql(sql, values)
 
 

@@ -14,9 +14,9 @@
     {% for technician in all_technicians %}
 
         <a href="/technicians/{{technician.id}}/show" class="single-tech">
-            <img src="{{technician.picture}}" alt="Picture of technician {{technician.name}}">
+            <img src="{{technician.type.picture}}" alt="Logo for {{technician.type.name}} Droid" height="150px" width="150px">
             <p><b>Name:</b> {{technician.name}}</p>
-            <p><b>Speciality:</b> {{technician.type.name}}</p>
+            <p><b>Speciality:</b> {{technician.type.name}} Droids</p>
         </a>
 
     {% endfor %}

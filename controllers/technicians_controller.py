@@ -29,10 +29,9 @@ def edit(id):
 @technicians_blueprint.route("/technicians/<id>/show", methods=['POST'])
 def update(id):
     name = request.form['name']
-    picture = request.form['picture']
     type_id = request.form['type_id']
     type = type_repo.select(type_id)
-    technician = Technician(name, picture, type, id)
+    technician = Technician(name, type, id)
     tech_repo.update(technician)
     return redirect("/technicians")
 
@@ -51,9 +50,8 @@ def new():
 @technicians_blueprint.route("/technicians", methods=['POST'])
 def create():
     name = request.form['name']
-    picture = request.form['picture']
     type_id = request.form['type_id']
     type = type_repo.select(type_id)
-    technician = Technician(name, picture, type)
+    technician = Technician(name, type)
     tech_repo.save(technician)
     return redirect("/technicians")

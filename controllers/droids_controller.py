@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, redirect
-import datetime
 
 from models.droid import Droid
 from models.owner import Owner 

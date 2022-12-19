@@ -19,7 +19,6 @@ CREATE TABLE types (
 CREATE TABLE technicians (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
-    picture VARCHAR (255),
     type_id INT NOT NULL REFERENCES types(id)
 );
 
@@ -27,9 +26,7 @@ CREATE TABLE droids (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
     type_id INT NOT NULL REFERENCES types(id),
-    -- registration_date VARCHAR(255),
-    registration_date DATE,
-    -- registration_date DATE, (format YYYY-MM-DD)
+    registration_date DATE,  -- format YYYY-MM-DD
     repair_notes TEXT,
     owner_id INT NOT NULL REFERENCES owners(id),
     technician_id INT NOT NULL REFERENCES technicians(id)
@@ -45,17 +42,17 @@ INSERT INTO owners (name, home_planet, comlink_frequency) VALUES ('Peli Motto', 
 INSERT INTO owners (name, home_planet, comlink_frequency) VALUES ('Olin Arak', 'Mon Calar', 8380); -- 7
 INSERT INTO owners (name, home_planet, comlink_frequency) VALUES ('Bossk', 'Wobani', 1008); -- 8
 
-INSERT INTO types (name, picture) VALUES ('Medical', 'hold.jpeg'); -- 1
-INSERT INTO types (name, picture) VALUES ('Protocol', 'hold.jpeg'); -- 2
-INSERT INTO types (name, picture) VALUES ('Battle', 'hold.jpeg'); -- 3
-INSERT INTO types (name, picture) VALUES ('Astromech', 'hold.jpeg'); -- 4
-INSERT INTO types (name, picture) VALUES ('Maintenance', 'hold.jpeg'); -- 5
+INSERT INTO types (name, picture) VALUES ('Medical', '/static/images/medical_droid.svg'); -- 1
+INSERT INTO types (name, picture) VALUES ('Protocol', '/static/images/protocol_droid.svg'); -- 2
+INSERT INTO types (name, picture) VALUES ('Battle', '/static/images/battle_droid.svg'); -- 3
+INSERT INTO types (name, picture) VALUES ('Astromech', '/static/images/astromech_droid.svg'); -- 4
+INSERT INTO types (name, picture) VALUES ('Maintenance', '/static/images/maintenance_droid.svg'); -- 5
 
-INSERT INTO technicians (name, picture, type_id) VALUES ('Eslor Keggle', 'hold.jpeg', 1); -- 1
-INSERT INTO technicians (name, picture, type_id) VALUES ('Grida Reeven','hold.jpeg', 2); -- 2
-INSERT INTO technicians (name, picture, type_id) VALUES ('Noma Raki','hold.jpeg', 3); -- 3
-INSERT INTO technicians (name, picture, type_id) VALUES ('Bo Sund','hold.jpeg', 4); -- 4
-INSERT INTO technicians (name, picture, type_id) VALUES ('Jallo Aren','hold.jpeg', 5); -- 5
+INSERT INTO technicians (name, type_id) VALUES ('Eslor Keggle', 1); -- 1
+INSERT INTO technicians (name, type_id) VALUES ('Grida Reeven', 2); -- 2
+INSERT INTO technicians (name, type_id) VALUES ('Noma Raki', 3); -- 3
+INSERT INTO technicians (name, type_id) VALUES ('Bo Sund', 4); -- 4
+INSERT INTO technicians (name, type_id) VALUES ('Jallo Aren', 5); -- 5
 
 INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('C-4AS', 2, '1057-11-14', 'None', 1, 2);
 INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('R5-D4', 4, '1050-06-05', 'None', 1, 4);

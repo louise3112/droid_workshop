@@ -19,11 +19,13 @@
     <h3>Droids Assigned</h3>
     <div class="droids-assigned">
         {% for droid in droids_assigned %}
-            <div class="droid-assignee">
+            <!-- <div class="droid-assignee"> -->
+            <a href="/droids/{{droid.id}}/show" class="droid-assignee">
                 <h4>{{droid.name}}</h4>
                 <p><b>Registered:</b> {{droid.registration_date}}</p>
                 <p><b>Owner:</b> {{droid.owner.name}}, {{droid.owner.home_planet}}</p>
-            </div>
+            </a>
+            <!-- </div> -->
         {% endfor %}
     </div>
 

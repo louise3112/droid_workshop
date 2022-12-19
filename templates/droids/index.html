@@ -14,7 +14,7 @@
     {% for droid in all_droids %}
 
         <a href="/droids/{{droid.id}}/show" class="single-droid">
-            <img src="{{droid.type.picture}}" alt="Picture of a {{droid.type.name}}">
+            <img src="{{droid.type.picture}}" alt="Logo for {{droid.type.name}} Droid" height="150px" width="150px">
             <p><b>Name:</b> {{droid.name}}</p>
             <p><b>Type:</b> {{droid.type.name}} Droid</p>
             <p><b>Registration Date:</b> {{droid.registration_date}}</p>
