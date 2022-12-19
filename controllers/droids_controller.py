@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, request, redirect
+import datetime
+
 from models.droid import Droid
 from models.owner import Owner 
 
@@ -19,8 +21,9 @@ def index():
 @droids_blueprint.route("/droids/<id>/show")
 def show_droid(id):
     droid = droid_repo.select(id)
+    droid_age = droid.calculate_age()
     owner = owner_repo.select(droid.owner.id)
-    return render_template("droids/show.html", droid = droid, owner = owner)
+    return render_template("droids/show.html", droid = droid, droid_age = droid_age, owner = owner)
 
 
 @droids_blueprint.route("/droids/<id>/edit")

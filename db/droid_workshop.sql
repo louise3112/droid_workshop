@@ -27,7 +27,9 @@ CREATE TABLE droids (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
     type_id INT NOT NULL REFERENCES types(id),
-    registration_date VARCHAR(255),
+    -- registration_date VARCHAR(255),
+    registration_date DATE,
+    -- registration_date DATE, (format YYYY-MM-DD)
     repair_notes TEXT,
     owner_id INT NOT NULL REFERENCES owners(id),
     technician_id INT NOT NULL REFERENCES technicians(id)
@@ -55,17 +57,17 @@ INSERT INTO technicians (name, picture, type_id) VALUES ('Noma Raki','hold.jpeg'
 INSERT INTO technicians (name, picture, type_id) VALUES ('Bo Sund','hold.jpeg', 4); -- 4
 INSERT INTO technicians (name, picture, type_id) VALUES ('Jallo Aren','hold.jpeg', 5); -- 5
 
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('C-4AS', 2, '14/11/1057', 'None', 1, 2);
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('R5-D4', 4, '05/06/1050', 'None', 1, 4);
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('BB-2', 4, '16/12/1045', 'None', 2, 4);
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('Mr Bones', 3, '17/02/1048', 'None', 3, 3);
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('2-1B', 1, '30/07/1055', 'None', 4, 1);
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('AP-5', 2, '28/03/1053', 'None', 4, 2);
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('GA-22', 5, '21/05/1042', 'None', 4, 5);
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('DT-8G', 3, '15/04/1054', 'None', 5, 3);
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('FX-6', 1, '28/10/1051', 'None', 6, 1);
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('W-1LE', 2, '15/01/1056', 'None', 6, 2);
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('AP-5', 4, '06/03/1049', 'None', 7, 4);
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('T3-B4', 5, '01/09/1035', 'None', 8, 5);
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('T3-M4', 5, '01/09/1046', 'None', 8, 5);
-INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('T3-X4', 5, '01/09/1056', 'None', 8, 5);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('C-4AS', 2, '1057-11-14', 'None', 1, 2);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('R5-D4', 4, '1050-06-05', 'None', 1, 4);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('BB-2', 4, '1045-12-16', 'None', 2, 4);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('Mr Bones', 3, '1048-02-17', 'None', 3, 3);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('2-1B', 1, '1055-07-30', 'None', 4, 1);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('AP-5', 2, '1053-03-28', 'None', 4, 2);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('GA-22', 5, '1042-05-21', 'None', 4, 5);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('DT-8G', 3, '1054-04-15', 'None', 5, 3);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('FX-6', 1, '1051-10-28', 'None', 6, 1);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('W-1LE', 2, '1056-01-15', 'None', 6, 2);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('AP-5', 4, '1049-03-06', 'None', 7, 4);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('T3-B4', 5, '1035-09-01', 'None', 8, 5);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('T3-M4', 5, '1046-09-01', 'None', 8, 5);
+INSERT INTO droids (name, type_id, registration_date, repair_notes, owner_id, technician_id) VALUES ('T3-X4', 5, '1056-09-01', 'None', 8, 5);
