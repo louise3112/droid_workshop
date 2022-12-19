@@ -20,17 +20,17 @@ CREATE TABLE technicians (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
     picture VARCHAR (255),
-    type_id INT NOT NULL REFERENCES types(id) ON DELETE CASCADE
+    type_id INT NOT NULL REFERENCES types(id)
 );
 
 CREATE TABLE droids (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
-    type_id INT NOT NULL REFERENCES types(id) ON DELETE CASCADE,
+    type_id INT NOT NULL REFERENCES types(id),
     registration_date VARCHAR(255),
     repair_notes TEXT,
     owner_id INT NOT NULL REFERENCES owners(id) ON DELETE CASCADE,
-    technician_id INT NOT NULL REFERENCES technicians(id) ON DELETE CASCADE
+    technician_id INT NOT NULL REFERENCES technicians(id)
 );
 
 

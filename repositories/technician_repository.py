@@ -36,6 +36,20 @@ def select(id):
     
     return technician
 
+def select_technicians_by_type(type_id):
+    technicians = []
+
+    sql = "SELECT * FROM technicians WHERE type_id = %s"
+    values = [type_id]
+    output = run_sql(sql, values)
+
+    for row in output:
+        type = type_repo.select(row['type_id'])
+        technician = Technician(row['name'], row['picture'], type, row['id'])
+        technicians.append(technician)
+
+    return technicians
+
 
 # UPDATE
 def update(technician):
