@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h3>Update Owner Details</h3>
+
+    <form action="/owners/{{owner.id}}/show" method="post" class="owners-form">
+
+        <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{owner.name}}" required>
+
+        <label for="home_planet">Home Planet:</label>
+            <input type="text" id="home_planet" name="home_planet" value="{{owner.home_planet}}">
+        
+        <label for="comlink_freq">Home Planet:</label>
+            <input type="number" id="comlink_freq" name="comlink_freq" value="{{owner.comlink_frequency}}">
+        
+        <button type="submit">Update Details</button>
+
+    </form>
+
+{% endblock %}

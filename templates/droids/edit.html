@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h3>Update Droid Details</h3>
+
+    <form action="/droids/{{droid.id}}/show" method="post" class="droids-form">
+
+        <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{droid.name}}" required autofocus>
+
+        <label for="type">Droid Type:</label>
+            <select id="type" name="type_id">
+                {% for type in all_types %}
+                    <option value="{{ type.id }}"
+                    {% if type.id == droid.type.id %} selected="selected" {% endif %}>
+                        {{type.name}}</option>
+                {% endfor %}
+            </select>
+            
+        <label for="tech">Technician:</label>
+            <select id="tech" name="tech_id">
+                {% for tech in relevant_techs %}
+                    <option value="{{ tech.id }}"
+                    {% if tech.id == droid.technician.id %} selected="selected" {% endif %}>
+                        {{tech.name}}</option>
+                {% endfor %}
+            </select>   
+
+        <label for="reg_date">Registration Date:</label>
+            <input type="text" id="reg_date" name="reg_date" value="{{droid.registration_date}}">
+        
+        <label for="notes">Repair Notes:</label>
+            <input type="text" id="notes" name="notes" value="{{droid.repair_notes}}">
+        
+        <button type="submit">Update Details</button>
+
+    </form>
+
+{% endblock %}

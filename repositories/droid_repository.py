@@ -62,7 +62,7 @@ def select_droid_by_technician(technician_id):
 # UPDATE
 def update(droid):
     sql = "UPDATE droids SET (name, type_id, registration_date, repair_notes, owner_id, technician_id) = (%s, %s, %s, %s, %s, %s) WHERE id = %s"
-    values = [droid.name, droid.type.id, droid.registration_date, droid.repair_notes, droid.owner.id, droid.technician.id]
+    values = [droid.name, droid.type.id, droid.registration_date, droid.repair_notes, droid.owner.id, droid.technician.id, droid.id]
     run_sql(sql, values)
 
 

@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, redirect
 from models.droid import Droid
+from models.owner import Owner 
+
 import repositories.droid_repository as droid_repo
 import repositories.type_repository as type_repo
 import repositories.owner_repository as owner_repo
@@ -30,20 +32,22 @@ def edit(id):
     return render_template("droids/edit.html", droid = droid, all_types = types, owner = owner, relevant_techs = relevant_technicians)
 
 @droids_blueprint.route("/droids/<id>/show", methods=['POST'])
-def update(id):
+def update(id):    
     name = request.form['name']
     type_id = request.form['type_id']
+    technician_id = request.form['tech_id']
     registration_date = request.form['reg_date']
     repair_notes = request.form['notes']
-    owner_id = request.form['owner_id']
-    technician_id = request.form['tech_id']
 
     type = type_repo.select(type_id)
-    owner = owner_repo.select(owner_id)  # ADD SOMETHING HERE TO DEAL WITH CHANGE IN OWNER??
     technician = tech_repo.select(technician_id)
-    droid = Droid(name, type, registration_date, repair_notes, owner, technician, id)
 
+    original_droid = droid_repo.select(id)
+    owner = original_droid.owner
+
+    droid = Droid(name, type, registration_date, repair_notes, owner, technician, id)
     droid_repo.update(droid)
+
     return redirect("/droids")
 
 
