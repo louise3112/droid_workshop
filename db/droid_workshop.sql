@@ -29,7 +29,7 @@ CREATE TABLE droids (
     type_id INT NOT NULL REFERENCES types(id),
     registration_date VARCHAR(255),
     repair_notes TEXT,
-    owner_id INT NOT NULL REFERENCES owners(id) ON DELETE CASCADE,
+    owner_id INT NOT NULL REFERENCES owners(id),
     technician_id INT NOT NULL REFERENCES technicians(id)
 );
 

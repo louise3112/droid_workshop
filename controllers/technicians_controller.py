@@ -16,7 +16,7 @@ def index():
 @technicians_blueprint.route("/technicians/<id>/show")
 def show_technician(id):
     technician = tech_repo.select(id)
-    droids = droid_repo.select_droid_by_technician(id)
+    droids = droid_repo.select_droids_by_technician(technician)
     return render_template("technicians/show.html", technician = technician, droids_assigned = droids)
 
 

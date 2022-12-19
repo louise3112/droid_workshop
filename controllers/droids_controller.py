@@ -53,7 +53,15 @@ def update(id):
 
 @droids_blueprint.route("/droids/<id>/delete", methods=['POST'])
 def delete(id):
+    droid = droid_repo.select(id)
+    owner = owner_repo.select(droid.owner.id)
+
     droid_repo.delete(id)
+    
+    remaining_droids = droid_repo.select_droids_by_owner(owner)
+    if remaining_droids == []:
+        owner_repo.delete(owner.id)
+
     return redirect("/droids")
 
 

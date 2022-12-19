@@ -42,16 +42,30 @@ def select(id):
     
     return droid
 
-def select_droid_by_technician(technician_id):
+def select_droids_by_technician(technician):
     droids = []
 
     sql = "SELECT * FROM droids WHERE technician_id = %s ORDER BY name ASC"
-    values = [technician_id]
+    values = [technician.id]
     output = run_sql(sql, values)
 
     for row in output:
         type = type_repo.select(row['type_id'])
         owner = owner_repo.select(row['owner_id'])
+        droid = Droid(row['name'], type, row['registration_date'], row['repair_notes'], owner, technician, row['id'])
+        droids.append(droid)
+
+    return droids
+
+def select_droids_by_owner(owner):
+    droids = []
+
+    sql = "SELECT * FROM droids WHERE owner_id = %s ORDER BY name ASC"
+    values = [owner.id]
+    output = run_sql(sql, values)
+
+    for row in output:
+        type = type_repo.select(row['type_id'])
         technician = tech_repo.select(row['technician_id'])
         droid = Droid(row['name'], type, row['registration_date'], row['repair_notes'], owner, technician, row['id'])
         droids.append(droid)
