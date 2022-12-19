@@ -102,3 +102,32 @@ footer {
     padding: 24px;
     text-align: center;
 }
+
+.section-header {
+    display: flex;
+    gap: 24px ;
+    align-items: center;
+    padding-bottom: 18px;
+}
+
+.section-header > h2 {
+    padding: 0;
+}
+
+.show-buttons {
+    padding-top: 16px;
+    padding-bottom: 24px;
+    display: flex;
+    gap: 8px;
+}
+
+.buttons {
+    font-size: 16px;
+    background-color: rgb(243, 243, 243);
+    height: 40px;
+    width: 175px;
+    border-color: black;
+    border-radius: 6px;
+    border-width: 2px;
+    cursor: pointer;
+}

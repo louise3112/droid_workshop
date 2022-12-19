@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="section-header">
+        <h2>All Droids</h2>
+        <form action="/droids/new">
+            <input type="submit" value="Add New Droid" class="buttons">
+        </form>
+    </div>
+    
+
+    <div class="all-droids">
+    {% for droid in all_droids %}
+
+        <a href="/droids/{{droid.id}}/show" class="single-droid">
+            <img src="{{droid.type.picture}}" alt="Picture of a {{droid.type.name}}">
+            <p><b>Name:</b> {{droid.name}}</p>
+            <p><b>Type:</b> {{droid.type.name}} Droid</p>
+            <p><b>Registration Date:</b> {{droid.registration_date}}</p>
+            <p><b>Owner:</b> {{droid.owner.name}}, {{droid.owner.home_planet}}</p>
+        </a>
+
+    {% endfor %}
+    </div>
+
+{% endblock %}

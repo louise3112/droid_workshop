@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="droid-container">
+        <div class="droid-details">
+            <h2>{{droid.name}}</h2>
+
+            <p> <b>Type:</b> {{droid.type.name}} Droid</p>
+            <p> <b>Technician:</b> {{droid.technician.name}}</p>
+            <p> <b>Registration Date:</b> {{droid.registration_date}}</p>
+
+            <div class="show-buttons">
+                <form action="/droids/{{droid.id}}/edit">
+                    <input type="submit" value="Update Droid Details" class="buttons">
+                </form>
+
+                <form action="/droids/{{droid.id}}/delete", method="post">
+                    <input type="submit" value="Delete" class="buttons">
+                </form>
+            </div>
+        </div>
+
+        <div class="owner-details">
+            <h3>Owner Details</h3>
+            <p> <b>Name:</b> {{droid.owner.name}}</p>
+            <p> <b>Home Planet:</b> {{droid.owner.home_planet}}</p>
+            <p> <b>Comlink Frequency:</b> {{droid.owner.comlink_frequency}}</p>
+
+            <form action="/owners/{{droid.owner.id}}/edit">
+                <input type="submit" value="Update Owner Details" class="buttons">
+            </form>
+        </div>
+
+        <div class="droid-notes">
+            <h3>Repair Notes</h3>
+            <p>{{droid.repair_notes}}</p>
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -13,7 +13,7 @@ def save(technician):
 def select_all():
     technicians = []
 
-    sql = "SELECT * FROM technicians"
+    sql = "SELECT * FROM technicians ORDER BY name ASC"
     output = run_sql(sql)
 
     for row in output:
@@ -39,7 +39,7 @@ def select(id):
 def select_technicians_by_type(type_id):
     technicians = []
 
-    sql = "SELECT * FROM technicians WHERE type_id = %s"
+    sql = "SELECT * FROM technicians WHERE type_id = %s ORDER BY name ASC"
     values = [type_id]
     output = run_sql(sql, values)
 

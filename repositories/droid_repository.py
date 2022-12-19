@@ -15,7 +15,7 @@ def save(droid):
 def select_all():
     droids = []
 
-    sql = "SELECT * FROM droids"
+    sql = "SELECT * FROM droids ORDER BY name ASC"
     output = run_sql(sql)
 
     for row in output:
