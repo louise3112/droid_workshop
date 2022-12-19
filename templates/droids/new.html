@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h3>Add A New Droid</h3>
+
+    <form action="/droids/new" method="post" class="droids-form">
+
+        <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Name" required autofocus>
+
+        <label for="type">Droid Type:</label>
+            <select id="type" name="type_id">
+                {% for type in all_types %}
+                    <option value="{{ type.id }}">{{type.name}}</option>
+                {% endfor %}
+            </select>
+
+        <label for="reg_date">Registration Date:</label>
+            <input type="text" id="reg_date" name="reg_date" placeholder="Registration date">
+
+        <label for="owner">Owner:</label>
+            <select id="owner" name="owner_id">
+                <option value="New">Add new owner</option>
+                {% for owner in all_owners %}
+                    <option value="{{ owner.id }}">{{owner.name}}, {{owner.home_planet}}, Comlink Frequency: {{owner.comlink_frequency}}</option>
+                {% endfor %}
+            </select>
+        
+        <label for="notes">Repair Notes:</label>
+            <input type="text" id="notes" name="notes" placeholder="Add any known history...."">
+        
+        <button type="submit">Add Droid</button>
+
+    </form>
+
+{% endblock %}

@@ -45,7 +45,7 @@ def select(id):
 def select_droid_by_technician(technician_id):
     droids = []
 
-    sql = "SELECT * FROM droids WHERE technician_id = %s"
+    sql = "SELECT * FROM droids WHERE technician_id = %s ORDER BY name ASC"
     values = [technician_id]
     output = run_sql(sql, values)
 

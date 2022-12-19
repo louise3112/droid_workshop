@@ -5,20 +5,17 @@ from models.owner import Owner
 def save(owner):
     sql = "INSERT INTO owners (name, home_planet, comlink_frequency) VALUES (%s, %s, %s) RETURNING *"
     values = [owner.name, owner.home_planet, owner.comlink_frequency]
-    run_sql(sql, values)
-    # output = run_sql(sql, values)
-
-    # id = output[0]['id']
-    # owner.id = id
-
-    # return owner
+    output = run_sql(sql, values)
+    id = output[0]['id']
+    owner.id = id
+    return owner
 
 
 # READ
 def select_all():
     owners = []
 
-    sql = "SELECT * FROM owners"
+    sql = "SELECT * FROM owners ORDER BY name ASC"
     output = run_sql(sql)
 
     for row in output:

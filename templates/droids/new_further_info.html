@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h3>Further Details Required</h3>
+
+    <form action="/droids/new/further-info" method="post" class="droids-form">
+
+        {% if relevant_techs|length > 1 %}
+
+            <label for="tech">Assign Technician:</label>
+                <select id="tech" name="tech_id">
+                    {% for tech in relevant_techs %}
+                        <option value="{{ tech.id }}">{{tech.name}}</option>
+                    {% endfor %}
+                </select>
+            
+        {% endif %}
+
+        {% if owner_id == "New" %}
+
+            <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Name" required>
+
+            <label for="home_planet">Home Planet:</label>
+                <input type="text" id="home_planet" name="home_planet" placeholder="Home Planet">
+            
+            <label for="comlink_freq">Home Planet:</label>
+                <input type="number" id="comlink_freq" name="comlink_freq" placeholder="Comlink Frequency">
+
+        {% endif %}
+
+        <!-- Hidden inputs to allow recapture of new droid data from initial 'Add Droid' form -->
+        <input type="hidden" name="droid_name" value="{{droid.name}}">
+        <input type="hidden" name="droid_type_id" value="{{droid.type.id}}">
+        <input type="hidden" name="reg_date" value="{{droid.registration_date}}">
+        <input type="hidden" name="notes" value="{{droid.repair_notes}}">
+        <input type="hidden" name="num_of_techs" value="{{relevant_techs|length}}">
+        <!-- <input type="hidden" name="relevant_techs" value={{relevant_techs}}> -->
+        <input type="hidden" name="owner_id" value="{{owner_id}}">
+
+
+        <button type="submit">Add Further Info</button>
+
+    </form>
+
+{% endblock %}

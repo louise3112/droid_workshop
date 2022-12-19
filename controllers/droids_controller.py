@@ -60,24 +60,59 @@ def delete(id):
 @droids_blueprint.route("/droids/new")
 def new():
     types = type_repo.select_all()
-    # ADD SOMETHING TO CALCULATE "TODAY" DATE - ACTUAL DATE - ~950 YEARS?
-    # ADD SOMETHING TO ALLOW CAPTURE OF OWNER INFO?
-    # ADD SOMETHING TO CREATE LIST OF RELEVANT TECHNICIANS - HOW TO DO THIS IF WE DON'T YET KNOW DROID TYPE??
-    return render_template("droids/new.html", all_types = types)
+    owners = owner_repo.select_all()
+    return render_template("droids/new.html", all_types = types, all_owners = owners)
 
-@droids_blueprint.route("/droids", methods=['POST'])
-def create():
+@droids_blueprint.route("/droids/new", methods=['POST'])
+def new_further_info():
     name = request.form['name']
     type_id = request.form['type_id']
     registration_date = request.form['reg_date']
-    repair_notes = request.form['notes']
     owner_id = request.form['owner_id']
-    technician_id = request.form['tech_id']
+    repair_notes = request.form['notes']
 
     type = type_repo.select(type_id)
-    owner = owner_repo.select(owner_id)  # ADD SOMETHING HERE TO ALLOW FOR CREATION OF NEW OWNER??
-    technician = tech_repo.select(technician_id)
-    droid = Droid(name, type, registration_date, repair_notes, owner, technician)
+    relevant_technicians = tech_repo.select_technicians_by_type(type_id)
 
+    if len(relevant_technicians) > 1 or owner_id == "New":
+        droid = Droid(name, type, registration_date, repair_notes, 0, 0)
+        return render_template("droids/new_further_info.html", droid = droid, relevant_techs = relevant_technicians, owner_id = owner_id)
+
+    else:
+        technician = relevant_technicians[0]
+        owner = owner_repo.select(owner_id)
+        droid = Droid(name, type, registration_date, repair_notes, owner, technician)
+        droid_repo.save(droid)
+        return redirect("/droids")
+
+
+@droids_blueprint.route("/droids/new/further-info", methods=['POST'])
+def create():
+    type_id = request.form['droid_type_id']
+    type = type_repo.select(type_id)
+
+    num_of_techs = int(request.form['num_of_techs'])
+    if num_of_techs > 1:
+        tech_id = request.form['tech_id']
+        technician = tech_repo.select(tech_id)
+    else:
+        technician = tech_repo.select_technicians_by_type(type_id)[0]
+
+    owner_id = request.form['owner_id']
+    if owner_id == "New":
+        owner_name = request.form['name']
+        home_planet = request.form['home_planet']
+        comlink_freq = request.form['comlink_freq']
+        new_owner = Owner(owner_name, home_planet, comlink_freq)
+        owner = owner_repo.save(new_owner)
+    else:
+        owner = owner_repo.select(owner_id)
+    
+    droid_name = request.form['droid_name']
+    registration_date = request.form['reg_date']
+    repair_notes = request.form['notes']
+
+    droid = Droid(droid_name, type, registration_date, repair_notes, owner, technician)
     droid_repo.save(droid)
+
     return redirect("/droids")
