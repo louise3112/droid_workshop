@@ -106,3 +106,7 @@
     border-radius: 6px;
     cursor: pointer;
 }
+
+#activation_date {
+    font-family: Arial, Helvetica, sans-serif;
+}

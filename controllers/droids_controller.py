@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, redirect
+from datetime import date
 
 from models.droid import Droid
 from models.owner import Owner 
@@ -20,9 +21,8 @@ def index():
 @droids_blueprint.route("/droids/<id>/show")
 def show_droid(id):
     droid = droid_repo.select(id)
-    droid_age = droid.calculate_age()
     owner = owner_repo.select(droid.owner.id)
-    return render_template("droids/show.html", droid = droid, droid_age = droid_age, owner = owner)
+    return render_template("droids/show.html", droid = droid, owner = owner)
 
 
 @droids_blueprint.route("/droids/<id>/edit")
@@ -38,7 +38,7 @@ def update(id):
     name = request.form['name']
     type_id = request.form['type_id']
     technician_id = request.form['tech_id']
-    registration_date = request.form['reg_date']
+    activation_date = request.form['activation_date']
     repair_notes = request.form['notes']
 
     type = type_repo.select(type_id)
@@ -47,7 +47,7 @@ def update(id):
     original_droid = droid_repo.select(id)
     owner = original_droid.owner
 
-    droid = Droid(name, type, registration_date, repair_notes, owner, technician, id)
+    droid = Droid(name, type, activation_date, repair_notes, owner, technician, id)
     droid_repo.update(droid)
 
     return redirect("/droids")
@@ -71,13 +71,15 @@ def delete(id):
 def new():
     types = type_repo.select_all()
     owners = owner_repo.select_all()
-    return render_template("droids/new.html", all_types = types, all_owners = owners)
+    actual_date = date.today()
+    current_date = date(actual_date.year - 960, actual_date.month, actual_date.day)
+    return render_template("droids/new.html", all_types = types, all_owners = owners, current_date = current_date)
 
 @droids_blueprint.route("/droids/new", methods=['POST'])
 def new_further_info():
     name = request.form['name']
     type_id = request.form['type_id']
-    registration_date = request.form['reg_date']
+    activation_date = request.form['activation_date']
     owner_id = request.form['owner_id']
     repair_notes = request.form['notes']
 
@@ -85,13 +87,13 @@ def new_further_info():
     relevant_technicians = tech_repo.select_technicians_by_type(type_id)
 
     if len(relevant_technicians) > 1 or owner_id == "New":
-        droid = Droid(name, type, registration_date, repair_notes, 0, 0)
+        droid = Droid(name, type, activation_date, repair_notes, 0, 0)
         return render_template("droids/new_further_info.html", droid = droid, relevant_techs = relevant_technicians, owner_id = owner_id)
 
     else:
         technician = relevant_technicians[0]
         owner = owner_repo.select(owner_id)
-        droid = Droid(name, type, registration_date, repair_notes, owner, technician)
+        droid = Droid(name, type, activation_date, repair_notes, owner, technician)
         droid_repo.save(droid)
         return redirect("/droids")
 
@@ -119,10 +121,10 @@ def create():
         owner = owner_repo.select(owner_id)
     
     droid_name = request.form['droid_name']
-    registration_date = request.form['reg_date']
+    activation_date = request.form['activation_date']
     repair_notes = request.form['notes']
 
-    droid = Droid(droid_name, type, registration_date, repair_notes, owner, technician)
+    droid = Droid(droid_name, type, activation_date, repair_notes, owner, technician)
     droid_repo.save(droid)
 
     return redirect("/droids")
