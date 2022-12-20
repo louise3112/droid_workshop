@@ -6,7 +6,7 @@ import repositories.technician_repository as tech_repo
 
 # CREATE
 def save(droid):
-    sql = "INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VALUES (%s, %s, %s, %s, %s, %s) RETURNING *"
+    sql = "INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VALUES (%s, %s, %s, %s, %s) RETURNING *"
     values = [droid.name, droid.type.id, droid.activation_date, droid.owner.id, droid.technician.id]
     run_sql(sql, values)
 
@@ -89,7 +89,7 @@ def select_unassigned_droids():
 
 # UPDATE
 def update(droid):
-    sql = "UPDATE droids SET (name, type_id, activation_date, owner_id, technician_id) = (%s, %s, %s, %s, %s, %s) WHERE id = %s"
+    sql = "UPDATE droids SET (name, type_id, activation_date, owner_id, technician_id) = (%s, %s, %s, %s, %s) WHERE id = %s"
     values = [droid.name, droid.type.id, droid.activation_date, droid.owner.id, droid.technician.id, droid.id]
     run_sql(sql, values)
 

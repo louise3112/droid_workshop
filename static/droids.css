@@ -55,15 +55,18 @@
 }
 
 .droid-notes {
-    grid-area: droid-notes;
+    margin-top: 18px;
+}
+
+.droid-notes > p {
+    padding-bottom: 16px;
 }
 
 .droid-container {
     display: grid;
     grid-template: 
-        'droid-details owner-details' 220px
-        'droid-notes droid-notes' 1fr / 1fr 320px;
-    
+        'droid-details owner-details' 220px / 1fr 320px;
+        /* 'droid-notes droid-notes' 1fr / 1fr 320px; */
 }
 
 .droids-form {
@@ -112,5 +115,9 @@
 }
 
 #activation_date {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#date {
     font-family: Arial, Helvetica, sans-serif;
 }

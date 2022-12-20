@@ -11,18 +11,6 @@ import repositories.type_repository as type_repo
 
 
 # READ
-# def select_all():
-#     types = []
-
-#     sql = "SELECT * FROM types"
-#     output = run_sql(sql)
-
-#     for row in output:
-#         type = Type(row['name'], row['picture'], row['id'])
-#         types.append(type)
-
-#     return types
-
 def select(id):
     service = None
 
@@ -31,12 +19,20 @@ def select(id):
     output = run_sql(sql, values)[0]
 
     if output is not None:
-        type_id = output['type_id']
-        if type_id is not None:
-            type = type_repo.select(type_id)
-        else:
-            type = None
-            
+        type = type_repo.select(output['type_id'])
         service = Service(output['name'], type, output['id'])
     
     return service
+
+def select_services_by_type(type):
+    services = []
+
+    sql = "SELECT * FROM services WHERE type_id = %s ORDER BY name ASC"
+    values = [type.id]
+    output = run_sql(sql, values)
+
+    for row in output:
+        service = Service(row['name'], type, row['id'])
+        services.append(service)
+    
+    return services

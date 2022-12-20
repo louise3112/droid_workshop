@@ -1,0 +1,56 @@
+
+.notes-form {
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    display: grid;
+    grid-template: 40px 40px 224px 40px/ 150px 450px;
+    gap: 12px;
+    align-items: center;
+}
+
+.notes-form > input {
+    font-size: 16px;
+    background-color: rgb(243, 243, 243); 
+    padding: 8px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 6px;
+}
+
+.notes-form > select {
+    font-size: 16px;
+    background-color: rgb(243, 243, 243); 
+    padding: 8px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 6px;
+}
+
+.notes-form > button {
+    font-size: 16px;
+    background-color: rgb(243, 243, 243); 
+    padding: 8px;
+    width: 612px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.notes-form > h4 {
+    padding-top: 10px;
+}
+
+#note_text {
+    height: 200px;
+    width: 1000px;
+}
+
+.note-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}

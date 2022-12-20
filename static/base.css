@@ -114,6 +114,10 @@ footer {
     padding: 0;
 }
 
+.section-header > h3 {
+    padding: 0;
+}
+
 .show-buttons {
     padding-top: 16px;
     padding-bottom: 24px;
@@ -126,6 +130,17 @@ footer {
     background-color: rgb(243, 243, 243);
     height: 40px;
     width: 175px;
+    border-color: black;
+    border-radius: 6px;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+.mini-buttons {
+    font-size: 12px;
+    background-color: rgb(243, 243, 243);
+    height: 20px;
+    width: 50px;
     border-color: black;
     border-radius: 6px;
     border-width: 2px;

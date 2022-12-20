@@ -35,15 +35,33 @@
                 <input type="submit" value="Update Owner Details" class="buttons">
             </form>
         </div>
+    </div>
 
-        <div class="droid-notes">
+    <hr>
+
+    <div class="droid-notes">
+        <div class="section-header">
             <h3>Repair Notes</h3>
-            {% for note in notes %}
-                <p>{{note.service.name}}, {{note.date}}</p>
-                <p>{{note.note}}</p>
-            {% endfor %}
+
+            <form action="/notes/{{droid.id}}/new">
+                <input type="submit" value="Add New Note" class="buttons">
+            </form>
         </div>
 
+        {% for note in notes %}
+            <div class="note-container">
+
+                <form action="/notes/{{note.id}}/delete" method="post">
+                    <input type="submit" value="Delete" class="mini-buttons">
+                </form>
+
+                <form action="/notes/{{note.id}}/edit">
+                    <input type="submit" value="Edit" class="mini-buttons">
+                </form>
+
+                <p> <b>{{note.change_date_format()}}&nbsp;&nbsp;&nbsp;{{note.service.name}}:</b> {{note.note}}</p>
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}

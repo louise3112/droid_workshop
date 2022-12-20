@@ -2,9 +2,6 @@ from flask import Blueprint, render_template, request, redirect
 from models.owner import Owner 
 
 import repositories.owner_repository as owner_repo
-# import repositories.droid_repository as droid_repo
-# import repositories.type_repository as type_repo
-# import repositories.technician_repository as tech_repo
 
 owners_blueprint = Blueprint("owners", __name__)
 

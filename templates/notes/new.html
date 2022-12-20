@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h3>Add A New Repair Note for {{droid.name}}</h3>
+
+    <form action="/notes" method="post" class="notes-form">
+
+        <input type="hidden" name="droid_id" value="{{droid.id}}">
+
+        <label for="date">Date:</label>
+            <input type="date" id="date" name="date" value='{{current_date}}'>
+
+        <label for="service">Service:</label>
+            <select id="service" name="service_id">
+                {% for service in available_services %}
+                    <option value="{{ service.id }}">{{service.name}}</option>
+                {% endfor %}
+            </select>
+        
+        <label for="note_text">Repair Notes:</label>
+            <input type="text" id="note_text" name="note_text" placeholder="Add relevant repair notes ..."">
+        
+        <button type="submit">Add Note</button>
+
+    </form>
+
+{% endblock %}
