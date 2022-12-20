@@ -13,8 +13,7 @@ notes_blueprint = Blueprint("notes", __name__)
 @notes_blueprint.route("/notes/<droid_id>/new")
 def new(droid_id):
     droid = droid_repo.select(droid_id)
-    type = type_repo.select(droid.type.id)
-    services = service_repo.select_services_by_type(type)
+    services = service_repo.select_services_by_type(droid.type.id)
     actual_date = date.today()
     current_date = date(actual_date.year - 960, actual_date.month, actual_date.day)
     return render_template("notes/new.html", droid = droid, available_services = services, current_date = current_date)
@@ -38,8 +37,7 @@ def create():
 def edit(id):
     note = note_repo.select(id)
     droid = droid_repo.select(note.droid.id)
-    type = type_repo.select(droid.type.id)
-    services = service_repo.select_services_by_type(type)
+    services = service_repo.select_services_by_type(droid.type.id)
     return render_template("notes/edit.html", note = note, droid = droid, available_services = services)
 
 @notes_blueprint.route("/notes/<id>/show", methods=['POST'])

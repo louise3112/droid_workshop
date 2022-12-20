@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS notes;
 DROP TABLE IF EXISTS droids;
 DROP TABLE IF EXISTS technicians;
+DROP TABLE IF EXISTS services_types;
 DROP TABLE IF EXISTS services;
 DROP TABLE IF EXISTS types;
 DROP TABLE IF EXISTS owners;
@@ -26,8 +27,15 @@ CREATE TABLE technicians (
 
 CREATE TABLE services (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255),
-    type_id INT REFERENCES types(id)
+    name VARCHAR(255)
+    -- type_id INT REFERENCES types(id)
+);
+
+CREATE TABLE services_types (
+    id SERIAL PRIMARY KEY,
+    service_id INT NOT NULL REFERENCES services(id),
+    type_id INT NOT NULL REFERENCES types(id)
+    -- type_id INT REFERENCES types(id)
 );
 
 CREATE TABLE droids (
@@ -63,25 +71,52 @@ INSERT INTO types (name, picture) VALUES ('Battle', '/static/images/battle_droid
 INSERT INTO types (name, picture) VALUES ('Astromech', '/static/images/astromech_droid.svg'); -- 4
 INSERT INTO types (name, picture) VALUES ('Maintenance', '/static/images/maintenance_droid.svg'); -- 5
 
-INSERT INTO services (name, type_id) VALUES ('Registration', 1);
-INSERT INTO services (name, type_id) VALUES ('Registration', 2);
-INSERT INTO services (name, type_id) VALUES ('Registration', 3);
-INSERT INTO services (name, type_id) VALUES ('Registration', 4);
-INSERT INTO services (name, type_id) VALUES ('Registration', 5);
-INSERT INTO services (name, type_id) VALUES ('Factory reset', 1);
-INSERT INTO services (name, type_id) VALUES ('Factory reset', 2);
-INSERT INTO services (name, type_id) VALUES ('Factory reset', 3);
-INSERT INTO services (name, type_id) VALUES ('Factory reset', 4);
-INSERT INTO services (name, type_id) VALUES ('Factory reset', 5);
-INSERT INTO services (name, type_id) VALUES ('Software upgrade', 1);
-INSERT INTO services (name, type_id) VALUES ('Software upgrade', 2);
-INSERT INTO services (name, type_id) VALUES ('Software upgrade', 3);
-INSERT INTO services (name, type_id) VALUES ('Software upgrade', 4);
-INSERT INTO services (name, type_id) VALUES ('Software upgrade', 5);
-INSERT INTO services (name, type_id) VALUES ('Hologram retreival', 1);
-INSERT INTO services (name, type_id) VALUES ('Hologram retreival', 2);
-INSERT INTO services (name, type_id) VALUES ('Hologram retreival', 4);
-INSERT INTO services (name, type_id) VALUES ('Add new language', 2);
+INSERT INTO services (name) VALUES ('Registration'); -- 1
+INSERT INTO services (name) VALUES ('Factory reset'); -- 2
+INSERT INTO services (name) VALUES ('Software upgrade'); -- 3
+INSERT INTO services (name) VALUES ('Hologram retreival'); -- 4
+INSERT INTO services (name) VALUES ('Add new language'); -- 5
+
+INSERT INTO services_types (service_id, type_id) VALUES (1, 1);
+INSERT INTO services_types (service_id, type_id) VALUES (1, 2);
+INSERT INTO services_types (service_id, type_id) VALUES (1, 3);
+INSERT INTO services_types (service_id, type_id) VALUES (1, 4);
+INSERT INTO services_types (service_id, type_id) VALUES (1, 5);
+INSERT INTO services_types (service_id, type_id) VALUES (2, 1);
+INSERT INTO services_types (service_id, type_id) VALUES (2, 2);
+INSERT INTO services_types (service_id, type_id) VALUES (2, 3);
+INSERT INTO services_types (service_id, type_id) VALUES (2, 4);
+INSERT INTO services_types (service_id, type_id) VALUES (2, 5);
+INSERT INTO services_types (service_id, type_id) VALUES (3, 1);
+INSERT INTO services_types (service_id, type_id) VALUES (3, 2);
+INSERT INTO services_types (service_id, type_id) VALUES (3, 3);
+INSERT INTO services_types (service_id, type_id) VALUES (3, 4);
+INSERT INTO services_types (service_id, type_id) VALUES (3, 5);
+INSERT INTO services_types (service_id, type_id) VALUES (4, 1);
+INSERT INTO services_types (service_id, type_id) VALUES (4, 2);
+INSERT INTO services_types (service_id, type_id) VALUES (4, 4);
+INSERT INTO services_types (service_id, type_id) VALUES (5, 2);
+
+
+-- INSERT INTO services (name, type_id) VALUES ('Registration', 1);
+-- INSERT INTO services (name, type_id) VALUES ('Registration', 2);
+-- INSERT INTO services (name, type_id) VALUES ('Registration', 3);
+-- INSERT INTO services (name, type_id) VALUES ('Registration', 4);
+-- INSERT INTO services (name, type_id) VALUES ('Registration', 5);
+-- INSERT INTO services (name, type_id) VALUES ('Factory reset', 1);
+-- INSERT INTO services (name, type_id) VALUES ('Factory reset', 2);
+-- INSERT INTO services (name, type_id) VALUES ('Factory reset', 3);
+-- INSERT INTO services (name, type_id) VALUES ('Factory reset', 4);
+-- INSERT INTO services (name, type_id) VALUES ('Factory reset', 5);
+-- INSERT INTO services (name, type_id) VALUES ('Software upgrade', 1);
+-- INSERT INTO services (name, type_id) VALUES ('Software upgrade', 2);
+-- INSERT INTO services (name, type_id) VALUES ('Software upgrade', 3);
+-- INSERT INTO services (name, type_id) VALUES ('Software upgrade', 4);
+-- INSERT INTO services (name, type_id) VALUES ('Software upgrade', 5);
+-- INSERT INTO services (name, type_id) VALUES ('Hologram retreival', 1);
+-- INSERT INTO services (name, type_id) VALUES ('Hologram retreival', 2);
+-- INSERT INTO services (name, type_id) VALUES ('Hologram retreival', 4);
+-- INSERT INTO services (name, type_id) VALUES ('Add new language', 2);
 
 INSERT INTO technicians (name, type_id) VALUES ('Eslor Keggle', 1); -- 1
 INSERT INTO technicians (name, type_id) VALUES ('Grida Reeven', 2); -- 2
@@ -104,6 +139,6 @@ INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VAL
 INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VALUES ('T3-M4', 5, '1046-09-01', 8, 5);
 INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VALUES ('T3-X4', 5, '1056-09-01', 8, 5);
 
-INSERT INTO notes (date, note, droid_id, service_id) VALUES ('1057-12-01', 'Basic functioning tests run and all passed. No history due to recent date of activation.', 1, 2);
-INSERT INTO notes (date, note, droid_id, service_id) VALUES ('1061-06-24', 'Jawa language added.', 1, 19);
-INSERT INTO notes (date, note, droid_id, service_id) VALUES ('1060-06-24', 'Protocol software updated to v32.1.8', 1, 12);
+INSERT INTO notes (date, note, droid_id, service_id) VALUES ('1057-12-01', 'Basic functioning tests run and all passed. No history due to recent date of activation.', 1, 1);
+INSERT INTO notes (date, note, droid_id, service_id) VALUES ('1061-06-24', 'Jawa language added.', 1, 5);
+INSERT INTO notes (date, note, droid_id, service_id) VALUES ('1060-06-24', 'Protocol software updated to v32.1.8', 1, 4);

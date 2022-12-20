@@ -1,12 +1,6 @@
 from db.run_sql import run_sql
 from models.type import Type
 
-# CREATE
-# def save(type):
-#     sql = "INSERT INTO types (name, picture) VALUES (%s, %s) RETURNING *"
-#     values = [type.name, type.picture]
-#     run_sql(sql, values)
-
 
 # READ
 def select_all():
@@ -33,16 +27,22 @@ def select(id):
     
     return type
 
+def select_types_by_service(service_id):
+    types = []
+
+    sql = "SELECT * FROM services_types WHERE service_id = %s"
+    values = [service_id]
+    output = run_sql(sql, values)
+
+    for row in output:
+        type = select(row['type_id'])
+        types.append(type)
+    
+    return types
+
 
 # UPDATE
 def update(type):
     sql = "UPDATE types SET (name, picture) = (%s, %s) WHERE id = %s"
     values = [type.name, type.picture, type.id]
     run_sql(sql, values)
-
-
-# DELETE
-# def delete(id):
-#     sql = "DELETE FROM types WHERE id = %s"
-#     values = [id]
-#     run_sql(sql, values)

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="section-header">
+        <h2>All Services</h2>
+        <form action="/services/new">
+            <input type="submit" value="Add New Service" class="buttons">
+        </form>
+    </div>
+    
+
+    <div class="all-services">
+    {% for service in all_services %}
+
+        <a href="/services/{{service.id}}/show" class="single-service">
+            <!-- <img src="{{technician.type.picture}}" alt="Logo for {{technician.type.name}} Droid" height="150px" width="150px"> -->
+            <h4> {{service.name}} </h4>
+            <p> Available to: </p>
+            <ul>
+                {% %}
+            </ul>
+
+        </a>
+
+        <form action="/services/<id>/delete">
+            <input type="submit" value="Delete Service" class="buttons">
+        </form>
+
+    {% endfor %}
+    </div>
+
+{% endblock %}
