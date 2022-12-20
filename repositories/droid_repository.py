@@ -72,6 +72,20 @@ def select_droids_by_owner(owner):
 
     return droids
 
+def select_unassigned_droids():
+    droids = []
+
+    sql = "SELECT * FROM droids WHERE technician_id is NULL ORDER BY name ASC"
+    output = run_sql(sql)
+
+    for row in output:
+        type = type_repo.select(row['type_id'])
+        owner = owner_repo.select(row['owner_id'])
+        droid = Droid(row['name'], type, row['activation_date'], row['repair_notes'], owner, None, row['id'])
+        droids.append(droid)
+
+    return droids
+
 
 # UPDATE
 def update(droid):

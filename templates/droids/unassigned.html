@@ -3,18 +3,12 @@
 {% block content %}
 
     <div class="section-header">
-        <h2>All Droids</h2>
-        <form action="/droids/new">
-            <input type="submit" value="Add New Droid" class="buttons">
-        </form>
-        <form action="/droids/unassigned">
-            <input type="submit" value="Unassigned Droids" class="buttons">
-        </form>
+        <h2>Unassigned Droids</h2>
     </div>
     
 
     <div class="all-droids">
-    {% for droid in all_droids %}
+    {% for droid in unassigned_droids %}
 
         <a href="/droids/{{droid.id}}/show" class="single-droid">
             <img src="{{droid.type.picture}}" alt="Logo for {{droid.type.name}} Droid" height="150px" width="150px">

@@ -107,6 +107,10 @@
     cursor: pointer;
 }
 
+.droids-form > h4 {
+    padding-top: 10px;
+}
+
 #activation_date {
     font-family: Arial, Helvetica, sans-serif;
 }

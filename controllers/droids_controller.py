@@ -97,7 +97,6 @@ def new_further_info():
         droid_repo.save(droid)
         return redirect("/droids")
 
-
 @droids_blueprint.route("/droids/new/further-info", methods=['POST'])
 def create():
     type_id = request.form['droid_type_id']
@@ -128,3 +127,9 @@ def create():
     droid_repo.save(droid)
 
     return redirect("/droids")
+
+
+@droids_blueprint.route("/droids/unassigned")
+def show_unassigned_droids():
+    unassigned_droids = droid_repo.select_unassigned_droids()
+    return render_template("droids/unassigned.html", unassigned_droids = unassigned_droids)

@@ -2,13 +2,13 @@ from datetime import date
 
 class Droid:
 
-    def __init__(self, input_name, input_type, input_activation_date, input_repair_notes, input_owner, input_technician, generated_id = None):
+    def __init__(self, input_name, input_type, input_activation_date, input_repair_notes, input_owner, generated_technician = None, generated_id = None):
         self.name = input_name
         self.type = input_type
         self.activation_date = input_activation_date
         self.repair_notes = input_repair_notes
         self.owner = input_owner
-        self.technician = input_technician
+        self.technician = generated_technician
         self.id = generated_id
 
     # def current_date(self):

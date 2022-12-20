@@ -6,7 +6,11 @@
             <h2>{{droid.name}}</h2>
 
             <p> <b>Type:</b> {{droid.type.name}} Droid</p>
-            <p> <b>Technician:</b> {{droid.technician.name}}</p>
+            {% if droid.technician is not none %}
+                <p> <b>Technician:</b> {{droid.technician.name}}</p>
+            {% else %}
+                <p> <b>Technician:</b> Not Assigned</p>
+            {% endif %}
             <p> <b>Activation Date:</b> {{droid.change_date_format()}}</p>
             <p> <b>Years Active:</b> {{droid.calculate_years_active()}}</p>
 

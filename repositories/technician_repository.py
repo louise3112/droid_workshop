@@ -1,6 +1,7 @@
 from db.run_sql import run_sql
 from models.technician import Technician
 import repositories.type_repository as type_repo
+import repositories.droid_repository as droid_repo
 
 # CREATE
 def save(technician):
@@ -26,13 +27,14 @@ def select_all():
 def select(id):
     technician = None
 
-    sql = "SELECT * FROM technicians WHERE id = %s"
-    values = [id]
-    output = run_sql(sql, values)[0]
+    if id is not None:
+        sql = "SELECT * FROM technicians WHERE id = %s"
+        values = [id]
+        output = run_sql(sql, values)[0]
 
-    if output is not None:
-        type = type_repo.select(output['type_id'])
-        technician = Technician(output['name'], type, output['id'])
+        if output is not None:
+            type = type_repo.select(output['type_id'])
+            technician = Technician(output['name'], type, output['id'])
     
     return technician
 
@@ -60,6 +62,13 @@ def update(technician):
 
 # DELETE
 def delete(id):
+    technician = select(id)
+    assigned_droids = droid_repo.select_droids_by_technician(technician)
+    for droid in assigned_droids:
+        droid.technician.id = None
+        droid_repo.update(droid)
+
     sql = "DELETE FROM technicians WHERE id = %s"
     values = [id]
+
     run_sql(sql, values)

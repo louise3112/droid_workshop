@@ -29,7 +29,7 @@ CREATE TABLE droids (
     activation_date DATE,  -- format YYYY-MM-DD
     repair_notes TEXT,
     owner_id INT NOT NULL REFERENCES owners(id),
-    technician_id INT NOT NULL REFERENCES technicians(id)
+    technician_id INT REFERENCES technicians(id)
 );
 
 
