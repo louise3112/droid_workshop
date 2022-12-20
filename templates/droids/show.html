@@ -38,7 +38,10 @@
 
         <div class="droid-notes">
             <h3>Repair Notes</h3>
-            <p>{{droid.repair_notes}}</p>
+            {% for note in notes %}
+                <p>{{note.service.name}}, {{note.date}}</p>
+                <p>{{note.note}}</p>
+            {% endfor %}
         </div>
 
     </div>

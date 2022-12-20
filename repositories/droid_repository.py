@@ -6,8 +6,8 @@ import repositories.technician_repository as tech_repo
 
 # CREATE
 def save(droid):
-    sql = "INSERT INTO droids (name, type_id, activation_date, repair_notes, owner_id, technician_id) VALUES (%s, %s, %s, %s, %s, %s) RETURNING *"
-    values = [droid.name, droid.type.id, droid.activation_date, droid.repair_notes, droid.owner.id, droid.technician.id]
+    sql = "INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VALUES (%s, %s, %s, %s, %s, %s) RETURNING *"
+    values = [droid.name, droid.type.id, droid.activation_date, droid.owner.id, droid.technician.id]
     run_sql(sql, values)
 
 
@@ -22,7 +22,7 @@ def select_all():
         type = type_repo.select(row['type_id'])
         owner = owner_repo.select(row['owner_id'])
         technician = tech_repo.select(row['technician_id'])
-        droid = Droid(row['name'], type, row['activation_date'], row['repair_notes'], owner, technician, row['id'])
+        droid = Droid(row['name'], type, row['activation_date'], owner, technician, row['id'])
         droids.append(droid)
 
     return droids
@@ -38,7 +38,7 @@ def select(id):
         type = type_repo.select(output['type_id'])
         owner = owner_repo.select(output['owner_id'])
         technician = tech_repo.select(output['technician_id'])
-        droid = Droid(output['name'], type, output['activation_date'], output['repair_notes'], owner, technician, output['id'])
+        droid = Droid(output['name'], type, output['activation_date'], owner, technician, output['id'])
     
     return droid
 
@@ -52,7 +52,7 @@ def select_droids_by_technician(technician):
     for row in output:
         type = type_repo.select(row['type_id'])
         owner = owner_repo.select(row['owner_id'])
-        droid = Droid(row['name'], type, row['activation_date'], row['repair_notes'], owner, technician, row['id'])
+        droid = Droid(row['name'], type, row['activation_date'], owner, technician, row['id'])
         droids.append(droid)
 
     return droids
@@ -67,7 +67,7 @@ def select_droids_by_owner(owner):
     for row in output:
         type = type_repo.select(row['type_id'])
         technician = tech_repo.select(row['technician_id'])
-        droid = Droid(row['name'], type, row['activation_date'], row['repair_notes'], owner, technician, row['id'])
+        droid = Droid(row['name'], type, row['activation_date'], owner, technician, row['id'])
         droids.append(droid)
 
     return droids
@@ -81,7 +81,7 @@ def select_unassigned_droids():
     for row in output:
         type = type_repo.select(row['type_id'])
         owner = owner_repo.select(row['owner_id'])
-        droid = Droid(row['name'], type, row['activation_date'], row['repair_notes'], owner, None, row['id'])
+        droid = Droid(row['name'], type, row['activation_date'], owner, None, row['id'])
         droids.append(droid)
 
     return droids
@@ -89,8 +89,8 @@ def select_unassigned_droids():
 
 # UPDATE
 def update(droid):
-    sql = "UPDATE droids SET (name, type_id, activation_date, repair_notes, owner_id, technician_id) = (%s, %s, %s, %s, %s, %s) WHERE id = %s"
-    values = [droid.name, droid.type.id, droid.activation_date, droid.repair_notes, droid.owner.id, droid.technician.id, droid.id]
+    sql = "UPDATE droids SET (name, type_id, activation_date, owner_id, technician_id) = (%s, %s, %s, %s, %s, %s) WHERE id = %s"
+    values = [droid.name, droid.type.id, droid.activation_date, droid.owner.id, droid.technician.id, droid.id]
     run_sql(sql, values)
 
 
