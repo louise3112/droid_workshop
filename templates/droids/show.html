@@ -20,7 +20,7 @@
                 </form>
 
                 <form action="/droids/{{droid.id}}/delete", method="post">
-                    <input type="submit" value="Delete" class="buttons">
+                    <input type="submit" value="Delete" class="buttons-delete">
                 </form>
             </div>
         </div>
@@ -51,12 +51,12 @@
         {% for note in notes %}
             <div class="note-container">
 
-                <form action="/notes/{{note.id}}/delete" method="post">
-                    <input type="submit" value="Delete" class="mini-buttons">
-                </form>
-
                 <form action="/notes/{{note.id}}/edit">
                     <input type="submit" value="Edit" class="mini-buttons">
+                </form>
+
+                <form action="/notes/{{note.id}}/delete" method="post">
+                    <input type="submit" value="Delete" class="mini-buttons-delete">
                 </form>
 
                 <p> <b>{{note.change_date_format()}}&nbsp;&nbsp;&nbsp;{{note.service.name}}:</b> {{note.note}}</p>

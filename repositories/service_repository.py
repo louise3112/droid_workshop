@@ -1,7 +1,6 @@
 from db.run_sql import run_sql
 from models.service import Service
 
-import repositories.type_repository as type_repo
 
 # CREATE
 def save(service):
