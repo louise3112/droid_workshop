@@ -14,6 +14,7 @@ def index():
         types = type_repo.select_types_by_service(service.id)
         for type in types:
             service.valid_types.append(type)
+
     return render_template("services/index.html", all_services = services)
 
 
@@ -25,6 +26,8 @@ def edit(id):
     relevant_type_ids = []
     for type in relevant_types:
         relevant_type_ids.append(type.id)
+    
+    relevant_type_ids.sort()
 
     return render_template("services/edit.html", service = service, all_types = all_types, relevant_type_ids = relevant_type_ids)
 

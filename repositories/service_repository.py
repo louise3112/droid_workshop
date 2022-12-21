@@ -20,7 +20,7 @@ def save_services_types(service_id, type_id):
 def select_all():
     services = []
 
-    sql = "SELECT * FROM services"
+    sql = "SELECT * FROM services ORDER BY name ASC"
     output = run_sql(sql)
 
     for row in output:

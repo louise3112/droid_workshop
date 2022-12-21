@@ -33,7 +33,7 @@ def update(id):
     type = type_repo.select(type_id)
     technician = Technician(name, type, id)
     tech_repo.update(technician)
-    return redirect("/technicians")
+    return redirect(f"/technicians/{id}/show")
 
 
 @technicians_blueprint.route("/technicians/<id>/delete", methods=['POST'])

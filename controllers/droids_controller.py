@@ -51,7 +51,7 @@ def update(id):
     droid = Droid(name, type, activation_date, owner, technician, id)
     droid_repo.update(droid)
 
-    return redirect("/droids")
+    return redirect(f"/droids/{id}/show")
 
 
 @droids_blueprint.route("/droids/<id>/delete", methods=['POST'])
@@ -90,12 +90,19 @@ def new_further_info():
         droid = Droid(name, type, activation_date, 0, 0)
         return render_template("droids/new_further_info.html", droid = droid, relevant_techs = relevant_technicians, owner_id = owner_id)
 
-    else:
+    elif len(relevant_technicians) == 1:
         technician = relevant_technicians[0]
         owner = owner_repo.select(owner_id)
         droid = Droid(name, type, activation_date, owner, technician)
         droid_repo.save(droid)
         return redirect("/droids")
+    
+    else:
+        owner = owner_repo.select(owner_id)
+        droid = Droid(name, type, activation_date, owner)
+        droid_repo.save_no_tech(droid)
+        return redirect("/droids")
+
 
 @droids_blueprint.route("/droids/new/further-info", methods=['POST'])
 def create():

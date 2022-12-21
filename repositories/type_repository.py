@@ -30,7 +30,7 @@ def select(id):
 def select_types_by_service(service_id):
     types = []
 
-    sql = "SELECT * FROM services_types WHERE service_id = %s"
+    sql = "SELECT * FROM services_types WHERE service_id = %s ORDER BY type_id ASC"
     values = [service_id]
     output = run_sql(sql, values)
 

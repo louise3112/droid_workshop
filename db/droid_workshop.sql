@@ -101,11 +101,13 @@ INSERT INTO technicians (name, type_id) VALUES ('Grida Reeven', 2); -- 2
 INSERT INTO technicians (name, type_id) VALUES ('Noma Raki', 3); -- 3
 INSERT INTO technicians (name, type_id) VALUES ('Bo Sund', 4); -- 4
 INSERT INTO technicians (name, type_id) VALUES ('Jallo Aren', 5); -- 5
+INSERT INTO technicians (name, type_id) VALUES ('Myn Adis', 1); -- 6
 
 INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VALUES ('C-4AS', 2, '1057-11-14', 1, 2);
 INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VALUES ('R5-D4', 4, '1050-06-05', 1, 4);
 INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VALUES ('BB-2', 4, '1045-12-16', 2, 4);
-INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VALUES ('Mr Bones', 3, '1048-02-17', 3, 3);
+INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VALUES ('Cpl Bones', 3, '1048-02-17', 3, 3);
+INSERT INTO droids (name, type_id, activation_date, owner_id) VALUES ('Dr Bones', 1, '1049-10-01', 3);
 INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VALUES ('2-1B', 1, '1055-07-30', 4, 1);
 INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VALUES ('AP-5', 2, '1053-03-28', 4, 2);
 INSERT INTO droids (name, type_id, activation_date, owner_id, technician_id) VALUES ('GA-22', 5, '1042-05-21', 4, 5);

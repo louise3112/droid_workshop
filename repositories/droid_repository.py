@@ -10,6 +10,11 @@ def save(droid):
     values = [droid.name, droid.type.id, droid.activation_date, droid.owner.id, droid.technician.id]
     run_sql(sql, values)
 
+def save_no_tech(droid):
+    sql = "INSERT INTO droids (name, type_id, activation_date, owner_id) VALUES (%s, %s, %s, %s) RETURNING *"
+    values = [droid.name, droid.type.id, droid.activation_date, droid.owner.id]
+    run_sql(sql, values)
+
 
 # READ
 def select_all():
