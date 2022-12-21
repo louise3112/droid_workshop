@@ -1,0 +1,91 @@
+.all-services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    justify-items: center;
+    gap: 48px;
+}
+
+.single-service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.service-info {
+    color: rgb(0, 0, 0);
+    background-color: rgb(243, 243, 243);
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 30px;
+    text-decoration: none;
+    padding: 12px;
+    margin-bottom: 12px;
+    height: 235px;
+    width: 215px;
+    cursor: pointer;
+}
+
+.service-info > h4 {
+    padding: 12px;
+    padding-top: 0;
+    margin: 0;
+}
+
+.service-info > p {
+    font-size: 18px;
+    padding: 12px;
+    padding-top: 0;
+    margin: 0;
+}
+
+.single-service > form {
+    padding: 12px;
+    padding-top: 0;
+    margin: 0;
+    justify-items: center;
+}
+
+.type-by-service {
+    margin: 0px;
+}
+
+.type-by-service > li {
+    margin-bottom: 8px;
+}
+
+.services-form {
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    display: grid;
+    grid-template: 40px 40px 40px / 125px 375px;
+    gap: 12px;
+    align-items: center;
+}
+
+.services-form > input {
+    font-size: 16px;
+    background-color: rgb(243, 243, 243); 
+    padding: 8px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 6px;
+}
+
+.services-form > button {
+    font-size: 16px;
+    background-color: rgb(243, 243, 243); 
+    padding: 8px;
+    width: 512px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* .service-checkbox {
+    justify-content: left;
+} */

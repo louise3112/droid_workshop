@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h3>Add A New Service</h3>   
+
+    <form action="/services" method="post" class="services-form">
+
+        <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Name" required autofocus>
+
+        <label for="cost">Cost in credits:</label>
+            <input type="number" id="cost" name="cost" placeholder="Cost" required autofocus>
+
+        <h4>Droid Types:</h4> <br>
+        {% for type in all_types %}
+            <label for="{{type.name}}">{{type.name}}</label>
+                <input type="checkbox" name="{{type.id}}" id="{{type.name}}" class="service-checkbox" value="True">
+                <input type="hidden" name="{{type.name}}" id="{{type.name}}" value="False">
+        {% endfor %}
+        
+        <button type="submit">Add Service</button>
+
+    </form>
+
+{% endblock %}

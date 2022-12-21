@@ -27,15 +27,14 @@ CREATE TABLE technicians (
 
 CREATE TABLE services (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255)
-    -- type_id INT REFERENCES types(id)
+    name VARCHAR(255),
+    cost INT
 );
 
 CREATE TABLE services_types (
     id SERIAL PRIMARY KEY,
     service_id INT NOT NULL REFERENCES services(id),
     type_id INT NOT NULL REFERENCES types(id)
-    -- type_id INT REFERENCES types(id)
 );
 
 CREATE TABLE droids (
@@ -71,11 +70,11 @@ INSERT INTO types (name, picture) VALUES ('Battle', '/static/images/battle_droid
 INSERT INTO types (name, picture) VALUES ('Astromech', '/static/images/astromech_droid.svg'); -- 4
 INSERT INTO types (name, picture) VALUES ('Maintenance', '/static/images/maintenance_droid.svg'); -- 5
 
-INSERT INTO services (name) VALUES ('Registration'); -- 1
-INSERT INTO services (name) VALUES ('Factory reset'); -- 2
-INSERT INTO services (name) VALUES ('Software upgrade'); -- 3
-INSERT INTO services (name) VALUES ('Hologram retreival'); -- 4
-INSERT INTO services (name) VALUES ('Add new language'); -- 5
+INSERT INTO services (name, cost) VALUES ('Registration', 500); -- 1
+INSERT INTO services (name, cost) VALUES ('Factory reset', 1000); -- 2
+INSERT INTO services (name, cost) VALUES ('Software upgrade', 250); -- 3
+INSERT INTO services (name, cost) VALUES ('Hologram retrieval', 2000); -- 4
+INSERT INTO services (name, cost) VALUES ('Add new language', 500); -- 5
 
 INSERT INTO services_types (service_id, type_id) VALUES (1, 1);
 INSERT INTO services_types (service_id, type_id) VALUES (1, 2);
@@ -96,27 +95,6 @@ INSERT INTO services_types (service_id, type_id) VALUES (4, 1);
 INSERT INTO services_types (service_id, type_id) VALUES (4, 2);
 INSERT INTO services_types (service_id, type_id) VALUES (4, 4);
 INSERT INTO services_types (service_id, type_id) VALUES (5, 2);
-
-
--- INSERT INTO services (name, type_id) VALUES ('Registration', 1);
--- INSERT INTO services (name, type_id) VALUES ('Registration', 2);
--- INSERT INTO services (name, type_id) VALUES ('Registration', 3);
--- INSERT INTO services (name, type_id) VALUES ('Registration', 4);
--- INSERT INTO services (name, type_id) VALUES ('Registration', 5);
--- INSERT INTO services (name, type_id) VALUES ('Factory reset', 1);
--- INSERT INTO services (name, type_id) VALUES ('Factory reset', 2);
--- INSERT INTO services (name, type_id) VALUES ('Factory reset', 3);
--- INSERT INTO services (name, type_id) VALUES ('Factory reset', 4);
--- INSERT INTO services (name, type_id) VALUES ('Factory reset', 5);
--- INSERT INTO services (name, type_id) VALUES ('Software upgrade', 1);
--- INSERT INTO services (name, type_id) VALUES ('Software upgrade', 2);
--- INSERT INTO services (name, type_id) VALUES ('Software upgrade', 3);
--- INSERT INTO services (name, type_id) VALUES ('Software upgrade', 4);
--- INSERT INTO services (name, type_id) VALUES ('Software upgrade', 5);
--- INSERT INTO services (name, type_id) VALUES ('Hologram retreival', 1);
--- INSERT INTO services (name, type_id) VALUES ('Hologram retreival', 2);
--- INSERT INTO services (name, type_id) VALUES ('Hologram retreival', 4);
--- INSERT INTO services (name, type_id) VALUES ('Add new language', 2);
 
 INSERT INTO technicians (name, type_id) VALUES ('Eslor Keggle', 1); -- 1
 INSERT INTO technicians (name, type_id) VALUES ('Grida Reeven', 2); -- 2

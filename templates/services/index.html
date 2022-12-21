@@ -9,25 +9,33 @@
         </form>
     </div>
     
-
     <div class="all-services">
     {% for service in all_services %}
 
-        <a href="/services/{{service.id}}/show" class="single-service">
-            <!-- <img src="{{technician.type.picture}}" alt="Logo for {{technician.type.name}} Droid" height="150px" width="150px"> -->
-            <h4> {{service.name}} </h4>
-            <p> Available to: </p>
-            <ul>
-                {% %}
-            </ul>
+        <div class="single-service">
+            <div class="service-info">
+                <h4> {{service.name}} </h4>
+                <p> <b>Cost:</b> {{service.cost}} credits</p>
+                <p> Available to: </p>
+                <ul class="type-by-service">
+                    {% for type in service.valid_types %} 
+                        <li>{{type.name}} Droids</li>
+                    {% endfor %}
+                </ul>
+            </div>
 
-        </a>
+            <form action="/services/{{service.id}}/edit">
+                <input type="submit" value="Edit Service" class="buttons">
+            </form>
 
-        <form action="/services/<id>/delete">
-            <input type="submit" value="Delete Service" class="buttons">
-        </form>
+            <form action="/services/{{service.id}}/delete" method="post">
+                <input type="submit" value="Delete Service" class="buttons">
+            </form>
+
+        </div>
 
     {% endfor %}
     </div>
+
 
 {% endblock %}
