@@ -4,9 +4,7 @@
 
     <h3>Add A New Repair Note for {{droid.name}}</h3>
 
-    <form action="/notes" method="post" class="notes-form">
-
-        <input type="hidden" name="droid_id" value="{{droid.id}}">
+    <form action="/droids/{{droid.id}}/notes/new" method="post" class="notes-form">
 
         <label for="date">Date:</label>
             <input type="date" id="date" name="date" value='{{current_date}}'>

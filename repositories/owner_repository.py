@@ -6,8 +6,7 @@ def save(owner):
     sql = "INSERT INTO owners (name, home_planet, comlink_frequency) VALUES (%s, %s, %s) RETURNING *"
     values = [owner.name, owner.home_planet, owner.comlink_frequency]
     output = run_sql(sql, values)
-    id = output[0]['id']
-    owner.id = id
+    owner.id = output[0]['id']
     return owner
 
 

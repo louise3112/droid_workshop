@@ -16,6 +16,14 @@ class Droid:
         age = current_date.year - self.activation_date.year
         return age
 
+
+    # Pseudocode for method to change the format of a date for display in app:
+
+    # Define a function called change_date_format that takes one parameter, self:
+    #   Create a variable called display_date which is equal to the self.activation_date variable converted to a dd-mm-yyyy format
+    #   Return the display_date variable
+
+
     def change_date_format(self):
         display_date = self.activation_date.strftime("%d-%m-%Y")
         return display_date

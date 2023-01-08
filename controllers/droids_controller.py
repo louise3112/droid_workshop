@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect
 from datetime import date
 
 from models.droid import Droid
-from models.owner import Owner 
+from models.owner import Owner
 
 import repositories.droid_repository as droid_repo
 import repositories.type_repository as type_repo
@@ -35,7 +35,7 @@ def edit(id):
     relevant_technicians = tech_repo.select_technicians_by_type(droid.type.id)
     return render_template("droids/edit.html", droid = droid, all_types = types, owner = owner, relevant_techs = relevant_technicians)
 
-@droids_blueprint.route("/droids/<id>/show", methods=['POST'])
+@droids_blueprint.route("/droids/<id>/edit", methods=['POST'])
 def update(id):    
     name = request.form['name']
     type_id = request.form['type_id']
@@ -139,3 +139,4 @@ def create():
 def show_unassigned_droids():
     unassigned_droids = droid_repo.select_unassigned_droids()
     return render_template("droids/unassigned.html", unassigned_droids = unassigned_droids)
+

@@ -7,8 +7,7 @@ def save(service):
     sql = "INSERT INTO services (name, cost) VALUES (%s, %s) RETURNING *"
     values = [service.name, service.cost]
     output = run_sql(sql, values)
-    id = output[0]['id']
-    service.id = id
+    service.id = output[0]['id']
     return service
 
 def save_services_types(service_id, type_id):

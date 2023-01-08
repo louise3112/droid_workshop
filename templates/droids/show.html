@@ -31,7 +31,7 @@
             <p> <b>Home Planet:</b> {{droid.owner.home_planet}}</p>
             <p> <b>Comlink Frequency:</b> {{droid.owner.comlink_frequency}}</p>
 
-            <form action="/owners/{{droid.owner.id}}/edit">
+            <form action="/droids/{{droid.id}}/owner/{{droid.owner.id}}/edit">
                 <input type="submit" value="Update Owner Details" class="buttons">
             </form>
         </div>
@@ -43,7 +43,7 @@
         <div class="section-header">
             <h3>Repair Notes</h3>
 
-            <form action="/notes/{{droid.id}}/new">
+            <form action="/droids/{{droid.id}}/notes/new">
                 <input type="submit" value="Add New Note" class="buttons">
             </form>
         </div>
@@ -51,11 +51,11 @@
         {% for note in notes %}
             <div class="note-container">
 
-                <form action="/notes/{{note.id}}/edit">
+                <form action="/droids/{{droid.id}}/notes/{{note.id}}/edit">
                     <input type="submit" value="Edit" class="mini-buttons">
                 </form>
 
-                <form action="/notes/{{note.id}}/delete" method="post">
+                <form action="/droids/{{droid.id}}/notes/{{note.id}}/delete" method="post">
                     <input type="submit" value="Delete" class="mini-buttons-delete">
                 </form>
 

@@ -31,7 +31,7 @@ def edit(id):
 
     return render_template("services/edit.html", service = service, all_types = all_types, relevant_type_ids = relevant_type_ids)
 
-@services_blueprint.route("/services/<id>/show", methods=['POST'])
+@services_blueprint.route("/services/<id>/edit", methods=['POST'])
 def update(id):
     name = request.form['name']
     cost = request.form['cost']
@@ -64,7 +64,7 @@ def new():
     types = type_repo.select_all()
     return render_template("services/new.html", all_types = types)
 
-@services_blueprint.route("/services", methods=['POST'])
+@services_blueprint.route("/services/new", methods=['POST'])
 def create():
     name = request.form['name']
     cost = request.form['cost']

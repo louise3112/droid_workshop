@@ -26,7 +26,7 @@ def edit(id):
     types = type_repo.select_all()
     return render_template("technicians/edit.html", technician = technician, all_types = types)
 
-@technicians_blueprint.route("/technicians/<id>/show", methods=['POST'])
+@technicians_blueprint.route("/technicians/<id>/edit", methods=['POST'])
 def update(id):
     name = request.form['name']
     type_id = request.form['type_id']
@@ -47,7 +47,7 @@ def new():
     types = type_repo.select_all()
     return render_template("technicians/new.html", all_types = types)
 
-@technicians_blueprint.route("/technicians", methods=['POST'])
+@technicians_blueprint.route("/technicians/new", methods=['POST'])
 def create():
     name = request.form['name']
     type_id = request.form['type_id']

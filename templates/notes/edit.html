@@ -4,9 +4,7 @@
 
     <h3>Update Selected Note for {{droid.name}}</h3>
 
-    <form action="/notes/{{note.id}}/show" method="post" class="notes-form">
-
-        <input type="hidden" name="droid_id" value="{{note.droid.id}}">
+    <form action="/droids/{{droid.id}}/notes/{{note.id}}/edit" method="post" class="notes-form">
 
         <label for="date">Date:</label>
             <input type="date" id="date" name="date" value="{{note.date}}">
