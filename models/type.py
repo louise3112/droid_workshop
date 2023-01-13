@@ -4,3 +4,4 @@ class Type:
         self.name = input_name
         self.picture = input_picture
         self.id = generated_id
+        

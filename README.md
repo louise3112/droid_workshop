@@ -14,6 +14,8 @@ The application was then extended to display, edit, delete and add services prov
 
 ## To Run
 
+This file requires flask and psycopg to be installed prior to running.
+
 To run the web application, type the following into the terminal:
 * "createdb droid_workshop" [creates the database]
 * "psql -d droid_workshop -f droid_workshop.sql" [populates the database]
