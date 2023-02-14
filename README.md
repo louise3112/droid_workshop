@@ -4,7 +4,11 @@ Solo project from Week 5 of the CodeClan Professional Software Development cours
 
 
 ## Brief
-Create a web application to help a droid repair workshop manage CRUD actions for technicians, droids and droid owners with a one-to-many relationship between droids and technicians. Within the 1 week timeframe for this project, I extended the above brief to incorporate CRUD actions for services available at the workshop.
+Create a web application to help a droid repair workshop manage CRUD actions for technicians, droids and droid owners with a one-to-many relationship between droids and technicians.
+![Screenshot of the technician and droid pages](readme_images/droids_technicians.png?raw=true "Title")
+
+Within the 1 week timeframe for this project, I extended the above brief to incorporate CRUD actions for services available at the workshop.
+![Screenshot of the services page](readme_images/services.png?raw=true "Title")
 
 
 ## Getting Started
