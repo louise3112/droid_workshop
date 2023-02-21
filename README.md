@@ -23,7 +23,7 @@ pip3 install psycopg2
 Create and seed the database:
 ```
 createdb droid_workshop
-psql -d droid_workshop -f droid_workshop.sql
+psql -d droid_workshop -f db/droid_workshop.sql
 ```
 
 Run the app:
